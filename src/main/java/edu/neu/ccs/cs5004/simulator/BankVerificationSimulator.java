@@ -1,4 +1,4 @@
-package edu.neu.ccs.cs5004;
+package edu.neu.ccs.cs5004.simulator;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -6,29 +6,25 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import edu.neu.ccs.cs5004.component.client.Client;
 import edu.neu.ccs.cs5004.component.transaction.Action;
 import edu.neu.ccs.cs5004.component.bank.Bank;
-import edu.neu.ccs.cs5004.component.client.ClientI;
 import edu.neu.ccs.cs5004.commandLineArgument.ArgumentParser;
 import edu.neu.ccs.cs5004.component.msgSig.MsgDigiPairI;
 import edu.neu.ccs.cs5004.component.transaction.TransactionStatusI;
 import edu.neu.ccs.cs5004.outputResult.CsvFileWriter;
 import edu.neu.ccs.cs5004.outputResult.FileName;
 import edu.neu.ccs.cs5004.outputResult.FileWriterI;
-import edu.neu.ccs.cs5004.simulator.ClientIdGenerator;
-import edu.neu.ccs.cs5004.simulator.ClientIdGeneratorI;
-import edu.neu.ccs.cs5004.simulator.DepositLimitGenerator;
-import edu.neu.ccs.cs5004.simulator.DepositLimitGeneratorI;
-import edu.neu.ccs.cs5004.simulator.MsgSigGenerator;
-import edu.neu.ccs.cs5004.simulator.MsgSigGeneratorI;
-import edu.neu.ccs.cs5004.simulator.WithdrawlLimitGenerator;
-import edu.neu.ccs.cs5004.simulator.WithdrawlLimitGeneratorI;
-import edu.neu.ccs.cs5004.simulator.TransactionStatusDetermination;
-import edu.neu.ccs.cs5004.simulator.TransactionStatusDeterminationI;
-import edu.neu.ccs.cs5004.simulator.processMsgSig.RsaKeyGenerator;
-import edu.neu.ccs.cs5004.simulator.processMsgSig.RsaKeyGeneratorI;
-import edu.neu.ccs.cs5004.simulator.processMsgSig.RsaSigVerification;
-import edu.neu.ccs.cs5004.simulator.processMsgSig.RsaSigVerificationI;
+import edu.neu.ccs.cs5004.component.client.ClientIdGenerator;
+import edu.neu.ccs.cs5004.component.client.ClientIdGeneratorI;
+import edu.neu.ccs.cs5004.component.bank.DepositLimitGenerator;
+import edu.neu.ccs.cs5004.component.bank.DepositLimitGeneratorI;
+import edu.neu.ccs.cs5004.component.bank.WithdrawlLimitGenerator;
+import edu.neu.ccs.cs5004.component.bank.WithdrawlLimitGeneratorI;
+import edu.neu.ccs.cs5004.component.client.RsaKeyGenerator;
+import edu.neu.ccs.cs5004.component.client.RsaKeyGeneratorI;
+import edu.neu.ccs.cs5004.component.bank.RsaSigVerification;
+import edu.neu.ccs.cs5004.component.bank.RsaSigVerificationI;
 
 public class BankVerificationSimulator implements BankVerificationSimulatorI {
   public static final String YES = "yes";
@@ -36,7 +32,7 @@ public class BankVerificationSimulator implements BankVerificationSimulatorI {
   public static final String HEADER = "Transaction number-Date,Time,Client ID,Message," +
           "Digital signature,Verified,Transaction status";
   private Bank bank;
-  private List<ClientI> clients;
+  private List<Client> clients;
   private List<MsgDigiPairI> pairsToVerify;
   private int numOfClient;
   private int numOfVerification;
@@ -57,7 +53,7 @@ public class BankVerificationSimulator implements BankVerificationSimulatorI {
     ClientIdGeneratorI clientGenerator = new ClientIdGenerator();
     clientGenerator.generateClientId(clients, numOfClient);
     RsaKeyGeneratorI keyGenerator= new RsaKeyGenerator();
-    for(ClientI currentClient: clients) {
+    for(Client currentClient: clients) {
       keyGenerator.generateKey(currentClient);
       bank.addPublicKey(currentClient.getId(), currentClient.getPublicKey());
     }
@@ -85,7 +81,7 @@ public class BankVerificationSimulator implements BankVerificationSimulatorI {
       Date date = new Date();
       sb.append(dateFormat.format(date));
       sb.append(seperator);
-      sb.append(pair.getClientId());
+      sb.append(pair.getClientId().getVal());
       sb.append(seperator);
       sb.append(pair.getMessage().getVal());
       sb.append(seperator);
@@ -114,5 +110,6 @@ public class BankVerificationSimulator implements BankVerificationSimulatorI {
             parser.getClientNum(), parser.getVerificationNum(), parser.getInvalidMsgPercentage(),
             parser.getOutputFile());
     newSimulator.setUpBankSystem();
+    newSimulator.runVerificationSimulator();
   }
 }

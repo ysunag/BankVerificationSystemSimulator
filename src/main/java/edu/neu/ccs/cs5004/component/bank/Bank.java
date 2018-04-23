@@ -3,7 +3,8 @@ package edu.neu.ccs.cs5004.component.bank;
 import java.util.HashMap;
 import java.util.Map;
 
-import edu.neu.ccs.cs5004.client.ClientId;
+
+import edu.neu.ccs.cs5004.component.client.ClientId;
 import edu.neu.ccs.cs5004.component.msgSig.RsaKey;
 
 public class Bank implements BankI{
@@ -14,6 +15,10 @@ public class Bank implements BankI{
 
   public Bank() {
     publicKeys = new HashMap<>();
+  }
+
+  public Map<ClientId, RsaKey> getPublicKeys() {
+    return publicKeys;
   }
 
   public Map<ClientId, Integer> getDepositLimits() {

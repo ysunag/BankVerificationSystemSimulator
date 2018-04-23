@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import edu.neu.ccs.cs5004.component.client.ClientI;
+import edu.neu.ccs.cs5004.component.client.Client;
 import edu.neu.ccs.cs5004.component.msgSig.DigiSig;
 import edu.neu.ccs.cs5004.component.msgSig.DigiSigI;
 import edu.neu.ccs.cs5004.component.msgSig.Message;
@@ -12,14 +12,14 @@ import edu.neu.ccs.cs5004.component.msgSig.MessageI;
 import edu.neu.ccs.cs5004.component.msgSig.MsgDigiPairI;
 import edu.neu.ccs.cs5004.component.msgSig.MsgDigiPair;
 
-import edu.neu.ccs.cs5004.simulator.processMsgSig.RsaSigGenerator;
-import edu.neu.ccs.cs5004.simulator.processMsgSig.RsaSigGeneratorI;
+import edu.neu.ccs.cs5004.component.client.RsaSigGenerator;
+import edu.neu.ccs.cs5004.component.client.RsaSigGeneratorI;
 
 public class MsgSigGenerator implements MsgSigGeneratorI {
-  private List<ClientI> clients;
+  private List<Client> clients;
   private int numberOfClients;
 
-  public MsgSigGenerator(List<ClientI> clients, int numberOfClients) {
+  public MsgSigGenerator(List<Client> clients, int numberOfClients) {
     this.clients = clients;
     this.numberOfClients = numberOfClients;
   }
@@ -34,7 +34,7 @@ public class MsgSigGenerator implements MsgSigGeneratorI {
     Random rand = new Random();
     MessageI msg;
     DigiSigI signature;
-    ClientI currentClient;
+    Client currentClient;
     for(int i = 0; i < numOfVerification; i++) {
       int clientNum = rand.nextInt(numberOfClients);
       currentClient = clients.get(clientNum);

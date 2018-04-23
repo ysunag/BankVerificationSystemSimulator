@@ -1,4 +1,4 @@
-package edu.neu.ccs.cs5004.simulator;
+package edu.neu.ccs.cs5004.component.bank;
 
 import java.util.Map;
 

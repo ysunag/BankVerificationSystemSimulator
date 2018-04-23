@@ -19,12 +19,19 @@ public class TransactionStatusDetermination implements TransactionStatusDetermin
   public boolean verifyTransaction(MessageI msg, ClientId client) {
     Action action = Action.generateAction(msg);
     int amount = msg.getVal() / 10;
-    if((action.equals(new Deposit()) && bank.getDepositLimits().get(client) >= amount)
-            || (action.equals(new Withdrawal())
+    if((action.equals(Deposit.instance) && bank.getDepositLimits().get(client) >= amount)
+            || (action.equals(Withdrawal.instance)
             && bank.getWithdrawlLimits().get(client) >= amount)) {
+      //System.out.println(client.getVal());
+      //System.out.println("DL" + bank.getDepositLimits().get(client));
+      //System.out.println("WL" + bank.getWithdrawlLimits().get(client));
       return true;
     } else {
+      //System.out.println(client.getVal());
+      //System.out.println("DL" + bank.getDepositLimits().get(client));
+     // System.out.println("WL" + bank.getWithdrawlLimits().get(client));
       return false;
     }
+
   }
 }
