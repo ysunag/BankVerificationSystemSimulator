@@ -1,4 +1,4 @@
-package edu.neu.ccs.cs5004.outputResult;
+package edu.neu.ccs.cs5004.outputresult;
 
 public class FileName {
   private String name;

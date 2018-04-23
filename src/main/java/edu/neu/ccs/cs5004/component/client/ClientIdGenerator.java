@@ -14,10 +14,10 @@ public class ClientIdGenerator implements ClientIdGeneratorI {
     for(int i = 0; i < numOfClient; i++) {
       boolean valid = false;
       while(!valid) {
-        int n = rand.nextInt(Client.IDBOUND) + 1;
-        if(!temp.contains(n)) {
-          temp.add(n);
-          clients.add(new Client(new ClientId(n)));
+        int num = rand.nextInt(Client.IDBOUND) + 1;
+        if(!temp.contains(num)) {
+          temp.add(num);
+          clients.add(new Client(new ClientId(num)));
           valid = true;
         }
       }

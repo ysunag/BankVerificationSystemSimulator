@@ -2,13 +2,10 @@ package edu.neu.ccs.cs5004.component.transaction;
 
 public class DepositRejected implements TransactionStatusI{
 
-  public static DepositRejected instance;
+  public static final DepositRejected INSTANCE = new DepositRejected();
 
   public static DepositRejected getInstance() {
-    if (instance == null) {
-      instance = new DepositRejected();
-    }
-    return instance;
+    return INSTANCE;
   }
 
   @Override

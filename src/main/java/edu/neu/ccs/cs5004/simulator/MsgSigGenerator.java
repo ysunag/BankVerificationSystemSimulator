@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Random;
 
 import edu.neu.ccs.cs5004.component.client.Client;
-import edu.neu.ccs.cs5004.component.msgSig.DigiSig;
-import edu.neu.ccs.cs5004.component.msgSig.DigiSigI;
-import edu.neu.ccs.cs5004.component.msgSig.Message;
-import edu.neu.ccs.cs5004.component.msgSig.MessageI;
-import edu.neu.ccs.cs5004.component.msgSig.MsgDigiPairI;
-import edu.neu.ccs.cs5004.component.msgSig.MsgDigiPair;
+import edu.neu.ccs.cs5004.component.msgsignature.DigiSig;
+import edu.neu.ccs.cs5004.component.msgsignature.DigiSigI;
+import edu.neu.ccs.cs5004.component.msgsignature.Message;
+import edu.neu.ccs.cs5004.component.msgsignature.MessageI;
+import edu.neu.ccs.cs5004.component.msgsignature.MsgDigiPairI;
+import edu.neu.ccs.cs5004.component.msgsignature.MsgDigiPair;
 
 import edu.neu.ccs.cs5004.component.client.RsaSigGenerator;
 import edu.neu.ccs.cs5004.component.client.RsaSigGeneratorI;

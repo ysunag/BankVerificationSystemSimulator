@@ -6,7 +6,7 @@ import edu.neu.ccs.cs5004.component.transaction.Action;
 import edu.neu.ccs.cs5004.component.transaction.Deposit;
 import edu.neu.ccs.cs5004.component.transaction.Withdrawal;
 import edu.neu.ccs.cs5004.component.client.ClientId;
-import edu.neu.ccs.cs5004.component.msgSig.MessageI;
+import edu.neu.ccs.cs5004.component.msgsignature.MessageI;
 
 public class TransactionStatusDetermination implements TransactionStatusDeterminationI {
 
@@ -19,8 +19,8 @@ public class TransactionStatusDetermination implements TransactionStatusDetermin
   public boolean verifyTransaction(MessageI msg, ClientId client) {
     Action action = Action.generateAction(msg);
     int amount = msg.getVal() / 10;
-    if((action.equals(Deposit.instance) && bank.getDepositLimits().get(client) >= amount)
-            || (action.equals(Withdrawal.instance)
+    if((action.equals(Deposit.INSTANCE) && bank.getDepositLimits().get(client) >= amount)
+            || (action.equals(Withdrawal.INSTANCE)
             && bank.getWithdrawlLimits().get(client) >= amount)) {
       //System.out.println(client.getVal());
       //System.out.println("DL" + bank.getDepositLimits().get(client));

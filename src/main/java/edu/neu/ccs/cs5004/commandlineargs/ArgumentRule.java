@@ -1,7 +1,7 @@
-package edu.neu.ccs.cs5004.commandLineArgument;
+package edu.neu.ccs.cs5004.commandlineargs;
 
 public class ArgumentRule {
-  public static final int ArgNum = 4;
+  public static final int ARGNUM = 4;
   public static final int CLIENTNUMBOUND = 50000;
   public static final int VERIFICATIONNUMBOUND = 10000;
   public static final double INVALIDPERCENTAGEBOUND = 100;

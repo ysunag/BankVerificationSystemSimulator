@@ -3,7 +3,7 @@ package edu.neu.ccs.cs5004.component.client;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
-import edu.neu.ccs.cs5004.component.msgSig.RsaKey;
+import edu.neu.ccs.cs5004.component.msgsignature.RsaKey;
 
 public class RsaKeyGenerator implements RsaKeyGeneratorI {
   public static final int BITLENGTH= 8;

@@ -5,8 +5,8 @@ import java.util.Objects;
 public class ClientId {
   private int val;
 
-  public ClientId(int id) {
-    this.val = id;
+  public ClientId(int thisid) {
+    this.val = thisid;
   }
 
   public int getVal() {

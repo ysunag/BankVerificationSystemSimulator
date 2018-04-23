@@ -2,8 +2,8 @@ package edu.neu.ccs.cs5004.component.bank;
 
 import java.math.BigInteger;
 
-import edu.neu.ccs.cs5004.component.msgSig.MsgDigiPairI;
-import edu.neu.ccs.cs5004.component.msgSig.RsaKey;
+import edu.neu.ccs.cs5004.component.msgsignature.MsgDigiPairI;
+import edu.neu.ccs.cs5004.component.msgsignature.RsaKey;
 
 public class RsaSigVerification implements RsaSigVerificationI {
 

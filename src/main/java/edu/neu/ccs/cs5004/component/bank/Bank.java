@@ -5,7 +5,7 @@ import java.util.Map;
 
 
 import edu.neu.ccs.cs5004.component.client.ClientId;
-import edu.neu.ccs.cs5004.component.msgSig.RsaKey;
+import edu.neu.ccs.cs5004.component.msgsignature.RsaKey;
 
 public class Bank implements BankI{
   private Map<ClientId, Integer> depositLimits;
@@ -29,8 +29,8 @@ public class Bank implements BankI{
     return withdrawlLimits;
   }
 
-  public void addPublicKey(ClientId id, RsaKey key) {
-    publicKeys.put(id, key);
+  public void addPublicKey(ClientId clientId, RsaKey key) {
+    publicKeys.put(clientId, key);
   }
 
   public void setWithdrawlLimits(Map<ClientId, Integer> withdrawlLimits) {

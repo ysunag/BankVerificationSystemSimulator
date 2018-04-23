@@ -1,4 +1,4 @@
-package edu.neu.ccs.cs5004.component.msgSig;
+package edu.neu.ccs.cs5004.component.msgsignature;
 
 import edu.neu.ccs.cs5004.component.client.ClientId;
 

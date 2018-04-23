@@ -1,4 +1,4 @@
-package edu.neu.ccs.cs5004.component.msgSig;
+package edu.neu.ccs.cs5004.component.msgsignature;
 
 public class DigiSig implements DigiSigI{
   private int val;

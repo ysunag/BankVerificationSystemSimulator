@@ -2,7 +2,7 @@ package edu.neu.ccs.cs5004.simulator;
 
 import java.util.List;
 
-import edu.neu.ccs.cs5004.component.msgSig.MsgDigiPairI;
+import edu.neu.ccs.cs5004.component.msgsignature.MsgDigiPairI;
 
 public interface MsgSigGeneratorI {
 

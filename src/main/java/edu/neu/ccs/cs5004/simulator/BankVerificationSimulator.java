@@ -9,12 +9,12 @@ import java.util.List;
 import edu.neu.ccs.cs5004.component.client.Client;
 import edu.neu.ccs.cs5004.component.transaction.Action;
 import edu.neu.ccs.cs5004.component.bank.Bank;
-import edu.neu.ccs.cs5004.commandLineArgument.ArgumentParser;
-import edu.neu.ccs.cs5004.component.msgSig.MsgDigiPairI;
+import edu.neu.ccs.cs5004.commandlineargs.ArgumentParser;
+import edu.neu.ccs.cs5004.component.msgsignature.MsgDigiPairI;
 import edu.neu.ccs.cs5004.component.transaction.TransactionStatusI;
-import edu.neu.ccs.cs5004.outputResult.CsvFileWriter;
-import edu.neu.ccs.cs5004.outputResult.FileName;
-import edu.neu.ccs.cs5004.outputResult.FileWriterI;
+import edu.neu.ccs.cs5004.outputresult.CsvFileWriter;
+import edu.neu.ccs.cs5004.outputresult.FileName;
+import edu.neu.ccs.cs5004.outputresult.FileWriterI;
 import edu.neu.ccs.cs5004.component.client.ClientIdGenerator;
 import edu.neu.ccs.cs5004.component.client.ClientIdGeneratorI;
 import edu.neu.ccs.cs5004.component.bank.DepositLimitGenerator;
@@ -27,8 +27,8 @@ import edu.neu.ccs.cs5004.component.bank.RsaSigVerification;
 import edu.neu.ccs.cs5004.component.bank.RsaSigVerificationI;
 
 public class BankVerificationSimulator implements BankVerificationSimulatorI {
-  public static final String YES = "yes";
-  public static final String NO = "no";
+  public static final String VERIFIED = "yes";
+  public static final String NOTVERIFIED= "no";
   public static final String HEADER = "Transaction number-Date,Time,Client ID,Message," +
           "Digital signature,Verified,Transaction status";
   private Bank bank;
@@ -69,35 +69,35 @@ public class BankVerificationSimulator implements BankVerificationSimulatorI {
   public void runVerificationSimulator() {
     RsaSigVerificationI sigVerification = new RsaSigVerification();
     TransactionStatusDeterminationI transacStatDeterminator = new TransactionStatusDetermination(bank);
-    StringBuilder sb;
+    StringBuilder sbuilder;
     String seperator = ",";
     int transactionNum = 1;
     List<String> output = new ArrayList<>();
     output.add(HEADER);
     for(MsgDigiPairI pair: pairsToVerify) {
-      sb = new StringBuilder();
-      sb.append(transactionNum);
+      sbuilder = new StringBuilder();
+      sbuilder.append(transactionNum);
       DateFormat dateFormat = new SimpleDateFormat("-yyyy/MM/dd,HH:mm:ss");
       Date date = new Date();
-      sb.append(dateFormat.format(date));
-      sb.append(seperator);
-      sb.append(pair.getClientId().getVal());
-      sb.append(seperator);
-      sb.append(pair.getMessage().getVal());
-      sb.append(seperator);
-      sb.append(pair.getSignature().getVal());
-      sb.append(seperator);
+      sbuilder.append(dateFormat.format(date));
+      sbuilder.append(seperator);
+      sbuilder.append(pair.getClientId().getVal());
+      sbuilder.append(seperator);
+      sbuilder.append(pair.getMessage().getVal());
+      sbuilder.append(seperator);
+      sbuilder.append(pair.getSignature().getVal());
+      sbuilder.append(seperator);
       boolean sigVerified = sigVerification.verifyMsg(bank, pair);
-      sb.append(sigVerified? YES: NO);
-      sb.append(seperator);
+      sbuilder.append(sigVerified? VERIFIED: NOTVERIFIED);
+      sbuilder.append(seperator);
       Action currentAction = Action.generateAction(pair.getMessage());
       boolean validTransaction = transacStatDeterminator.verifyTransaction(pair.getMessage(),
               pair.getClientId());
       TransactionStatusI transactStatus = TransactionStatusI.
               generateTransactionStatus(currentAction, sigVerified && validTransaction);
-      sb.append(transactStatus.toString());
+      sbuilder.append(transactStatus.toString());
       transactionNum += 1;
-      output.add(sb.toString());
+      output.add(sbuilder.toString());
     }
     FileWriterI writer = new CsvFileWriter();
     writer.toWrite(outputFile, output);

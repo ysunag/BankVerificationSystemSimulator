@@ -4,7 +4,7 @@ package edu.neu.ccs.cs5004.component.bank;
 import java.util.Map;
 
 import edu.neu.ccs.cs5004.component.client.ClientId;
-import edu.neu.ccs.cs5004.component.msgSig.RsaKey;
+import edu.neu.ccs.cs5004.component.msgsignature.RsaKey;
 
 public interface BankI {
   Map<ClientId, Integer> getDepositLimits();
@@ -13,5 +13,5 @@ public interface BankI {
 
   Map<ClientId, RsaKey> getPublicKeys();
 
-  void addPublicKey(ClientId id, RsaKey key);
+  void addPublicKey(ClientId clientId, RsaKey key);
 }

@@ -1,10 +1,10 @@
-package edu.neu.ccs.cs5004.commandLineArgument;
+package edu.neu.ccs.cs5004.commandlineargs;
 
 /**
  * Represents the commandline argument parser.
  */
 
-import edu.neu.ccs.cs5004.outputResult.FileName;
+import edu.neu.ccs.cs5004.outputresult.FileName;
 
 public class ArgumentParser {
   private String[] args;
@@ -25,7 +25,7 @@ public class ArgumentParser {
    * @throws InvalidVerificationSystemException upon invalid arguments.
    */
   public void checkArgument() {
-    if( args.length != ArgumentRule.ArgNum) {
+    if( args.length != ArgumentRule.ARGNUM) {
       throw new InvalidVerificationSystemException.InvalidArgNumException();
     }
     if (getClientNum() > ArgumentRule.CLIENTNUMBOUND || getClientNum() < 0) {

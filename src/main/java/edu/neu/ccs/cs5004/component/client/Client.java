@@ -1,21 +1,21 @@
 package edu.neu.ccs.cs5004.component.client;
 
-import edu.neu.ccs.cs5004.component.msgSig.RsaKey;
+import edu.neu.ccs.cs5004.component.msgsignature.RsaKey;
 
 public class Client {
   public static final int IDBOUND = 100000;
 
-  private ClientId id;
+  private ClientId clientId;
   private RsaKey privateKey;
   private RsaKey publicKey;
 
-  public Client(ClientId id) {
-    this.id = id;
+  public Client(ClientId clientId) {
+    this.clientId = clientId;
 
   }
 
   public ClientId getId() {
-    return id;
+    return clientId;
   }
 
   RsaKey getPrivateKey() {

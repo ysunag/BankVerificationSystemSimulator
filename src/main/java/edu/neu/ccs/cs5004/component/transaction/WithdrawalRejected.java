@@ -2,13 +2,10 @@ package edu.neu.ccs.cs5004.component.transaction;
 
 public class WithdrawalRejected implements TransactionStatusI{
 
-  public static WithdrawalRejected instance;
+  public static final WithdrawalRejected INSTANCE = new WithdrawalRejected();
 
   public static WithdrawalRejected getInstance() {
-    if (instance == null) {
-      instance = new WithdrawalRejected();
-    }
-    return instance;
+    return INSTANCE;
   }
 
   @Override
