@@ -1,12 +1,16 @@
 package edu.neu.ccs.cs5004.commandlineargs;
 
+/**
+ * Represents the command line argument exceptions.
+ */
+
 public class InvalidVerificationSystemException extends RuntimeException{
   public static final String WRONGARGNUM = "Wrong number of arguments provided";
   public static final String WRONGCLIENTNUM = "Please provide valid number of bank clients";
   public static final String WRONGVERIFICATIONNUM = "Please provide valid number of unique"
           + " verifications.";
-  public static final String WRONGINVALIDMSGPERCENT = "Please provide valid invalid message " +
-          "percentage.";
+  public static final String WRONGINVALIDMSGPERCENT = "Please provide valid invalid message "
+          + "percentage.";
   public static final String WRONGOUTPUT = "Invalid output file name provided";
 
   public InvalidVerificationSystemException(String message) {

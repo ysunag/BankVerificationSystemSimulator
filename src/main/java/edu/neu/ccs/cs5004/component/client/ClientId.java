@@ -2,13 +2,24 @@ package edu.neu.ccs.cs5004.component.client;
 
 import java.util.Objects;
 
+/**
+ * Represents the client ID.
+ */
 public class ClientId {
   private int val;
 
+  /**
+   * Constructs a client ID with the given ID value.
+   * @param thisid the given ID value
+   */
   public ClientId(int thisid) {
     this.val = thisid;
   }
 
+  /**
+   * Getter for the ID value.
+   * @return the value of the client ID.
+   */
   public int getVal() {
     return val;
   }

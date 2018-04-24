@@ -25,7 +25,7 @@ public class ArgumentParser {
    * @throws InvalidVerificationSystemException upon invalid arguments.
    */
   public void checkArgument() {
-    if( args.length != ArgumentRule.ARGNUM) {
+    if ( args.length != ArgumentRule.ARGNUM) {
       throw new InvalidVerificationSystemException.InvalidArgNumException();
     }
     if (getClientNum() > ArgumentRule.CLIENTNUMBOUND || getClientNum() < 0) {
@@ -33,6 +33,10 @@ public class ArgumentParser {
     }
     if (getVerificationNum() > ArgumentRule.VERIFICATIONNUMBOUND || getVerificationNum() < 0) {
       throw new InvalidVerificationSystemException.InvalidVerificationNumException();
+    }
+    if (getInvalidMsgPercentage() > ArgumentRule.INVALIDPERCENTAGEBOUND
+            || getInvalidMsgPercentage() < 0) {
+      throw new InvalidVerificationSystemException.InvalidMsgPercentException();
     }
     if (!getOutputFile().getName().matches(ArgumentRule.REGEX_OUTPUT_FILE)) {
       throw new InvalidVerificationSystemException.InvalidOutputException();

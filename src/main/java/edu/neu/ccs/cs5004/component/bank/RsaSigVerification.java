@@ -1,16 +1,23 @@
 package edu.neu.ccs.cs5004.component.bank;
 
-import java.math.BigInteger;
-
 import edu.neu.ccs.cs5004.component.msgsignature.MsgDigiPairI;
 import edu.neu.ccs.cs5004.component.msgsignature.RsaKey;
 
+import java.math.BigInteger;
+
+
+/**
+ * Represents the process of verifying the received transaction message.
+ */
+
 public class RsaSigVerification implements RsaSigVerificationI {
 
+  @Override
   public boolean verifyMsg(BankI bank, MsgDigiPairI pair) {
     RsaKey currentKey = bank.getPublicKeys().get(pair.getClientId());
     int decryptedMsg = BigInteger.valueOf(pair.getSignature().getVal()).modPow(
-            currentKey.getFirst(), currentKey.getSecond()).intValue();
+            BigInteger.valueOf(currentKey.getFirst()), BigInteger.valueOf(
+                    currentKey.getSecond())).intValue();
     return decryptedMsg == pair.getMessage().getVal();
   }
 }

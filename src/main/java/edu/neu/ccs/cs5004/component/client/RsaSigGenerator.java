@@ -1,17 +1,23 @@
 package edu.neu.ccs.cs5004.component.client;
 
-import java.math.BigInteger;
-
 import edu.neu.ccs.cs5004.component.msgsignature.DigiSig;
 import edu.neu.ccs.cs5004.component.msgsignature.DigiSigI;
 import edu.neu.ccs.cs5004.component.msgsignature.MessageI;
 
+
+import java.math.BigInteger;
+
+
+/**
+ * Represents the process of generating digital signature.
+ */
 public class RsaSigGenerator implements RsaSigGeneratorI {
+
+  @Override
   public DigiSigI generateSig(Client currentClient, MessageI msg) {
     BigInteger message = BigInteger.valueOf(msg.getVal());
-    int sigVal = message.modPow(currentClient.getPrivateKey().getFirst(),
-    currentClient.getPrivateKey().getSecond()).intValue();
-  //  System.out.println(sigVal);
+    int sigVal = message.modPow(BigInteger.valueOf(currentClient.getPrivateKey().getFirst()),
+            BigInteger.valueOf(currentClient.getPrivateKey().getSecond())).intValue();
     return new DigiSig(sigVal);
   }
 }

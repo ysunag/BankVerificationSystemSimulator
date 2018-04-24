@@ -1,5 +1,8 @@
 package edu.neu.ccs.cs5004.commandlineargs;
 
+/**
+ * Represents the command line requirements.
+ */
 public class ArgumentRule {
   public static final int ARGNUM = 4;
   public static final int CLIENTNUMBOUND = 50000;

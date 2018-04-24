@@ -1,21 +1,35 @@
 package edu.neu.ccs.cs5004.component.msgsignature;
 
-import java.math.BigInteger;
-
+/**
+ * Represents the RSA key with a pair of integers.
+ */
 public class RsaKey {
-  private BigInteger first;
-  private BigInteger second;
+  private int first;
+  private int second;
 
-  public RsaKey(BigInteger first, BigInteger second) {
+  /**
+   * Creates an RSA key with two integers.
+   * @param first the first value of the key
+   * @param second the second value of the key
+   */
+  public RsaKey(int first, int second) {
     this.first = first;
     this.second = second;
   }
 
-  public BigInteger getFirst() {
+  /**
+   * Getter for the property 'First'.
+   * @return Value for the property 'First'
+   */
+  public int getFirst() {
     return first;
   }
 
-  public BigInteger getSecond() {
+  /**
+   * Getter for the property 'Second'.
+   * @return Value for the property 'Second'
+   */
+  public int getSecond() {
     return second;
   }
 }
